@@ -1,0 +1,11 @@
+[Unit]
+Description=Witty Pi daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/wittypid
+KillMode=process
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
