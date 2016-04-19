@@ -19,10 +19,21 @@ files:
 * systemd/wittypid.service - systemd service file
 * wittypid.conf - config file for wittypid (default location /etc)
 
-You should use kernel rpi-4.4y or later, so the patches are included and the dtbo file for the Witty Pi is present.
+You should use kernel rpi-4.4y or later, so the dtbo file for the Witty Pi is present and the patches to use the RTC as wakeup-source are included.
+To use the RTC you can enable the wittypi-overlay in ```/boot/config.txt```.
+For example: dtoverlay=wittypi (Please have also a look at [this](https://github.com/raspberrypi/linux/blob/rpi-4.4.y/arch/arm/boot/dts/overlays/README ""))
 
 #### compile wittypid.c (you need wiringX and libconfuse)
-type ```make``` and ```make install```
+type ```make``` to compile from source
+and ```make install``` or ```make install_all``` as root to install the files
 
 or manual ```gcc wittypid.c -o wittypid -Wall -lwiringX -lconfuse```
 and copy the necessary files to the default locations
+
+#### Arch Linux ARM ####
+
+* build from source with makepkg [PKGBUILD](https://github.com/vitalogy/myPKGBUILDs/tree/master/wittypid "PKGBUILD")
+* or download pre-compiled [wittypid-0.5-0-armv7h.pkg.tar.xz](http://milaw.biz/files/wittypid-0.5-0-armv7h.pkg.tar.xz "wittypid-0.5-0-armv7h.pkg.tar.xz") and install with pacman
+  * $ ```cd /tmp && wget http://milaw.biz/files/wittypid-0.5-0-armv7h.pkg.tar.xz```
+  * $ ```su```
+  * # ```pacman -U wittypid-0.5-0-armv7h.pkg.tar.xz```
